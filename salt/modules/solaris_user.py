@@ -330,7 +330,7 @@ def chgroups(name, groups, append=False):
     if ugrps == set(groups):
         return True
     if append:
-        groups.update(ugrps)
+        groups.extend(list(ugrps))
     cmd = ['usermod', '-G', ','.join(groups), name]
     return __salt__['cmd.retcode'](cmd, python_shell=False) == 0
 
